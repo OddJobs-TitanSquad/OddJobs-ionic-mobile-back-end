@@ -37,4 +37,8 @@ public class JobPostController {
         return jobPostRepository.findJobPostByJob_id(job_id);
     }
 
+@GetMapping("/njobs")
+    public @ResponseBody List<JobPost> gAll(@PathVariable Long jobType){
+        return jobPostRepository.findDistinctByPublishTrueAndExpireDateBefore(jobType);
+}
 }

@@ -1,5 +1,7 @@
 package com.example.jwt.database;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -21,10 +23,10 @@ public class Application {
 
 
 
-   // @Basic(optional = false)
-    //@Column(name = " acceptDate",insertable = false,updatable = false)
-    //@Temporal(TemporalType.TIMESTAMP)
-   // private Date acceptDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date acceptDate;
 
 
     private boolean isAccept;
@@ -33,19 +35,29 @@ public class Application {
     private boolean isConfirm;
 
 
-    //@Basic(optional = false)
-   // @Column(name = " confirmDate",insertable = false,updatable = false)
-   // @Temporal(TemporalType.TIMESTAMP)
-   // private Date confirmDate;
+
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date applicatedDate;
+
+
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date confirmDate;
 
     public Application(){
 
     }
-    public Application(Long jobId,Long userId,boolean isAccept,boolean isConfirm){
+    public Application(Long jobId,Long userId,boolean isAccept,boolean isConfirm,Date applicatedDate,Date acceptDate,Date confirmDate){
         this.jobId = jobId;
         this.userId = userId;
         this.isAccept = isAccept;
         this.isConfirm = isConfirm;
+        this.acceptDate = acceptDate;
+        this.confirmDate = confirmDate;
+        this.applicatedDate = applicatedDate;
     }
 
     public Long getApplicationId() {
@@ -72,13 +84,7 @@ public class Application {
         this.userId = userId;
     }
 
-    //public Date getAcceptDate() {
-   //     return acceptDate;
-    //}
 
-   // public void setAcceptDate(Date accetDate) {
-     //   this.acceptDate = accetDate;
-   // }
 
     public boolean isAccept() {
         return isAccept;
@@ -96,12 +102,27 @@ public class Application {
         isConfirm = confirm;
     }
 
+    public Date getAcceptDate() {
+        return acceptDate;
+    }
 
-   // public Date getConfirmDate() {
-     //   return confirmDate;
-    //}
+    public void setAcceptDate(Date acceptDate) {
+        this.acceptDate = acceptDate;
+    }
 
-   // public void setConfirmDate(Date confirmDate) {
-     //   this.confirmDate = confirmDate;
-    //}
+    public Date getApplicatedDate() {
+        return applicatedDate;
+    }
+
+    public void setApplicatedDate(Date applicatedDate) {
+        this.applicatedDate = applicatedDate;
+    }
+
+    public Date getConfirmDate() {
+        return confirmDate;
+    }
+
+    public void setConfirmDate(Date confirmDate) {
+        this.confirmDate = confirmDate;
+    }
 }

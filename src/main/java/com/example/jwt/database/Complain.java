@@ -1,6 +1,9 @@
 package com.example.jwt.database;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "complains")
@@ -19,14 +22,19 @@ public class Complain {
     private String description;
 
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date complainDateAndTime;
+
     public Complain(){
 
     }
 
-    public Complain(Long comJobId,Long userId,String description){
+    public Complain(Long comJobId,Long userId,String description,Date complainDateAndTime){
         this.comJobId = comJobId;
         this.userId = userId;
         this.description = description;
+        this.complainDateAndTime = complainDateAndTime;
     }
     public Long getComplainId() {
         return complainId;
@@ -58,4 +66,11 @@ public class Complain {
         this.description = description;
     }
 
+    public Date getComplainDateAndTime() {
+        return complainDateAndTime;
+    }
+
+    public void setComplainDateAndTime(Date complainDateAndTime) {
+        this.complainDateAndTime = complainDateAndTime;
+    }
 }

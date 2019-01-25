@@ -1,5 +1,7 @@
 package com.example.jwt.database;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import javax.xml.crypto.Data;
 import java.util.Date;
@@ -19,13 +21,16 @@ public class Rating {
 
     private Integer employeeRate;
 
-
-    private Date employeeRateDateAndTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+private Date employeeRateDateAndTime;
 
 
     private Integer employerRate;
 
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     private Date   employerRateDateAndTime;
 
     public Rating(){

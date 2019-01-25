@@ -5,6 +5,8 @@ import com.example.jwt.repository.ApplicationRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -19,6 +21,7 @@ public class ApplicationController {
     @PostMapping("/insert")
    @CrossOrigin(origins = {"http://localhost:8100", "file://"})
     public void insert (@RequestBody Application application){
+        application.setApplicatedDate(getTimeStamp());
         applicationRepository.save(application);
 
     }
@@ -38,6 +41,7 @@ public class ApplicationController {
         Application application1 = applicationRepository.findApplicationByApplicationId(ap_id);
 
         //application1.setAccept(application.isAccept());
+        application1.setConfirmDate(getTimeStamp());
         application1.setConfirm(application.isConfirm());
 
 
@@ -48,6 +52,12 @@ public class ApplicationController {
 
 
 
+    }
+
+    public Date getTimeStamp(){
+        Date date = new Date();
+
+        return new Timestamp(date.getTime());
     }
 
 }

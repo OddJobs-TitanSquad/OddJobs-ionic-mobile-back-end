@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,8 +23,14 @@ public class ComplainController {
     @PostMapping("/complain")
     @CrossOrigin(origins = {"http://localhost:8100", "file://"})
     public void addComplain (@RequestBody Complain complain){
+        complain.setComplainDateAndTime(getTimeStamp());
         complainRepository.save(complain);
 
     }
 
+    public Date getTimeStamp(){
+        Date date = new Date();
+
+        return new Timestamp(date.getTime());
+    }
 }

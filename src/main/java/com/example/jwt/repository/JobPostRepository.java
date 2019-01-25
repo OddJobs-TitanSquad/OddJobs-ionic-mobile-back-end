@@ -18,4 +18,7 @@ import java.util.concurrent.Future;
 public interface JobPostRepository extends JpaRepository<JobPost,Long>{
 @Query(value = "select j from JobPost j where j.jobId = ?1")
 List<JobPost> findJobPostByJob_id(Long job_id);
+
+@Query(value = "select jp from JobPost jp where jp.jobType = ?1 and jp.expireDate > current_timestamp and jp.isPublish = true ")
+    List<JobPost> findDistinctByPublishTrueAndExpireDateBefore(Long jobType);
 }
